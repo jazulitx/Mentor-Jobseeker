@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mentor | Jobseeker - platform untuk membantu pencari kerja melalui CV ATS, lowongan kerja, persiapan interview, dan produk karier.">
+  <title>Mentor | Jobseeker</title>
+  <style>
+    :root{--primary:#2563eb;--primary2:#1d4ed8;--dark:#0f172a;--muted:#64748b;--light:#f8fafc;--border:#e2e8f0;--white:#fff;--green:#16a34a;--shadow:0 14px 40px rgba(15,23,42,.08)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--dark);background:#fff;line-height:1.6}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1120px,92%);margin:auto}
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+    .logo{font-weight:900;font-size:20px;letter-spacing:-.5px}.logo span{color:var(--primary)}
+    .navlinks{display:flex;gap:24px;align-items:center;font-size:14px;font-weight:700}.navlinks a:hover{color:var(--primary)}
+    .menu{display:none;border:0;background:none;font-size:28px;cursor:pointer}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:12px;font-weight:800;border:1px solid transparent;cursor:pointer;transition:.2s}
+    .btn-primary{background:var(--primary);color:white}.btn-primary:hover{background:var(--primary2);transform:translateY(-1px)}
+    .btn-outline{border-color:var(--border);background:#fff}.btn-outline:hover{border-color:var(--primary);color:var(--primary)}
+    .hero{padding:90px 0 70px;background:radial-gradient(circle at 85% 15%,#dbeafe 0,transparent 28%),linear-gradient(180deg,#f8fbff,#fff)}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:55px;align-items:center}
+    .eyebrow{display:inline-block;background:#eff6ff;color:var(--primary);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:800;margin-bottom:18px}
+    h1{font-size:clamp(40px,6vw,68px);line-height:1.05;letter-spacing:-2.5px;margin-bottom:20px}
+    h1 span{color:var(--primary)}
+    .hero p{font-size:18px;color:var(--muted);max-width:650px;margin-bottom:28px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-card{background:#fff;border:1px solid var(--border);border-radius:24px;padding:26px;box-shadow:var(--shadow)}
+    .mock-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.badge{font-size:12px;font-weight:800;padding:6px 9px;background:#dcfce7;color:#166534;border-radius:999px}
+    .search{display:flex;gap:8px;background:var(--light);padding:8px;border-radius:14px;margin-bottom:18px}.search input{min-width:0;flex:1;border:0;background:transparent;padding:9px;outline:0}
+    .job-mini{padding:14px 0;border-bottom:1px solid var(--border)}.job-mini:last-child{border-bottom:0}.job-mini strong{display:block}.job-mini small{color:var(--muted)}
+    section{padding:82px 0}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:30px}.section-head h2{font-size:36px;letter-spacing:-1.3px}.section-head p{color:var(--muted);max-width:620px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .card{border:1px solid var(--border);border-radius:18px;padding:22px;background:#fff;box-shadow:0 6px 20px rgba(15,23,42,.04);transition:.2s}.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+    .icon{width:44px;height:44px;border-radius:12px;background:#eff6ff;color:var(--primary);display:grid;place-items:center;font-size:21px;margin-bottom:16px}
+    .card h3{margin-bottom:7px}.card p{color:var(--muted);font-size:14px}
+    .price{font-size:25px;font-weight:900;margin:15px 0}.price small{font-size:12px;color:var(--muted);font-weight:600}
+    .job-card{position:relative}.job-type{position:absolute;right:18px;top:18px;background:#f1f5f9;color:#475569;padding:5px 8px;border-radius:8px;font-size:11px;font-weight:800}
+    .company{color:var(--primary);font-size:13px;font-weight:800}.meta{font-size:13px;color:var(--muted);margin:8px 0 15px}
+    .about{background:var(--dark);color:white}.about p{color:#cbd5e1}.about .card{background:#172033;border-color:#263247;color:white}.about .card p{color:#94a3b8}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}.stat{padding:20px;border:1px solid #263247;border-radius:15px}.stat b{font-size:30px;display:block}.stat span{font-size:13px;color:#94a3b8}
+    .blog-card .date{font-size:12px;color:var(--primary);font-weight:800}.blog-card h3{margin:8px 0}.blog-card a{color:var(--primary);font-weight:800;font-size:14px;display:inline-block;margin-top:14px}
+    .contact{background:var(--light)}.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px}.contact-list{display:grid;gap:12px}.contact-item{background:#fff;border:1px solid var(--border);padding:16px;border-radius:14px}.contact-item b{display:block}.contact-item span{color:var(--muted);font-size:14px}
+    form{background:#fff;border:1px solid var(--border);padding:25px;border-radius:18px}.field{margin-bottom:15px}.field label{font-size:13px;font-weight:800;display:block;margin-bottom:6px}.field input,.field textarea{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;font:inherit;outline:0}.field textarea{min-height:130px;resize:vertical}.field input:focus,.field textarea:focus{border-color:var(--primary)}
+    footer{background:#020617;color:#94a3b8;padding:35px 0}.footer-row{display:flex;justify-content:space-between;gap:20px}.footer-row b{color:#fff}
+    .hidden{display:none}
+    .wa-float{position:fixed;right:22px;bottom:22px;z-index:100;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#25D366;color:#fff;font-size:28px;box-shadow:0 10px 28px rgba(15,23,42,.22);transition:.2s}
+    .wa-float:hover{transform:translateY(-3px) scale(1.04)}
+    .contact-note{margin-top:10px;color:var(--muted);font-size:12px}
+    @media(max-width:850px){.navlinks{display:none;position:absolute;top:72px;left:0;right:0;background:#fff;padding:18px 4%;border-bottom:1px solid var(--border);flex-direction:column;align-items:flex-start}.navlinks.open{display:flex}.menu{display:block}.hero-grid,.contact-grid{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:560px){nav{height:64px}.navlinks{top:64px}.hero{padding:65px 0 45px}section{padding:62px 0}.section-head{display:block}.section-head h2{font-size:29px;margin-bottom:8px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}h1{letter-spacing:-1.8px}.hero p{font-size:16px}.btn{width:100%}.actions{display:grid}.footer-row{display:block}.footer-row p{margin-top:8px}}
+  </style>
+</head>
+<body>
+<header>
+  <nav class="container">
+    <a class="logo" href="#home">Mentor <span>| Jobseeker</span></a>
+    <button class="menu" aria-label="Menu" onclick="toggleMenu()">☰</button>
+    <div class="navlinks" id="navlinks">
+      <a href="#home" onclick="closeMenu()">Home</a><a href="#lowongan" onclick="closeMenu()">Lowongan</a><a href="#produk" onclick="closeMenu()">Produk</a><a href="#layanan" onclick="closeMenu()">Layanan</a><a href="#tentang" onclick="closeMenu()">Tentang</a><a href="#blog" onclick="closeMenu()">Blog</a><a href="#kontak" onclick="closeMenu()" class="btn btn-primary">Kontak</a>
+    </div>
+  </nav>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Platform Persiapan Karier Indonesia</div>
+      <h1>Siapkan CV. Temukan kerja. <span>Bangun karier.</span></h1>
+      <p>Mentor | Jobseeker membantu pencari kerja mempersiapkan CV ATS, menemukan lowongan, meningkatkan kemampuan interview, dan mendapatkan panduan karier yang praktis.</p>
+      <div class="actions"><a class="btn btn-primary" href="#produk">Lihat Produk</a><a class="btn btn-outline" href="#lowongan">Cari Lowongan</a></div>
+    </div>
+    <div class="hero-card">
+      <div class="mock-top"><strong>Lowongan Terbaru</strong><span class="badge">Update</span></div>
+      <div class="search"><input id="heroSearch" placeholder="Cari posisi..." oninput="filterJobs(this.value)"><button class="btn btn-primary" onclick="document.getElementById('lowongan').scrollIntoView()">Cari</button></div>
+      <div class="job-mini"><strong>Staff Administrasi</strong><small>PT Contoh Indonesia • Jakarta</small></div>
+      <div class="job-mini"><strong>Marketing Executive</strong><small>Perusahaan Nasional • Bandung</small></div>
+      <div class="job-mini"><strong>Finance Staff</strong><small>PT Nusantara • Surabaya</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="layanan">
+  <div class="container">
+    <div class="section-head"><div><h2>Layanan untuk Jobseeker</h2><p>Mulai dari dokumen lamaran hingga persiapan menghadapi interview.</p></div></div>
+    <div class="grid">
+      <article class="card"><div class="icon">📄</div><h3>CV ATS</h3><p>Optimasi atau pembuatan CV yang rapi, profesional, dan mudah dibaca sistem ATS.</p></article>
+      <article class="card"><div class="icon">🎤</div><h3>Simulasi Interview</h3><p>Latihan menghadapi pertanyaan HR dan user agar lebih siap saat proses seleksi.</p></article>
+      <article class="card"><div class="icon">🎯</div><h3>Konsultasi Karier</h3><p>Arahan praktis untuk menentukan strategi pencarian kerja dan pengembangan karier.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="lowongan" style="background:var(--light)">
+  <div class="container">
+    <div class="section-head"><div><h2>Lowongan Kerja</h2><p>Contoh katalog lowongan. Ganti data di JavaScript dengan lowongan aktual Anda.</p></div></div>
+    <div class="grid" id="jobs">
+      <article class="card job-card" data-search="staff administrasi admin"><span class="job-type">FULL TIME</span><span class="company">PT Contoh Indonesia</span><h3>Staff Administrasi</h3><div class="meta">📍 Jakarta • 💼 Admin</div><a class="btn btn-outline" href="#kontak">Lihat Detail</a></article>
+      <article class="card job-card" data-search="marketing executive marketing"><span class="job-type">FULL TIME</span><span class="company">Perusahaan Nasional</span><h3>Marketing Executive</h3><div class="meta">📍 Bandung • 💼 Marketing</div><a class="btn btn-outline" href="#kontak">Lihat Detail</a></article>
+      <article class="card job-card" data-search="finance staff finance accounting"><span class="job-type">FULL TIME</span><span class="company">PT Nusantara</span><h3>Finance Staff</h3><div class="meta">📍 Surabaya • 💼 Finance</div><a class="btn btn-outline" href="#kontak">Lihat Detail</a></article>
+      <article class="card job-card" data-search="customer service cs"><span class="job-type">FULL TIME</span><span class="company">Digital Company</span><h3>Customer Service</h3><div class="meta">📍 Remote • 💼 Customer Service</div><a class="btn btn-outline" href="#kontak">Lihat Detail</a></article>
+      <article class="card job-card" data-search="hr human resource recruiter"><span class="job-type">FULL TIME</span><span class="company">Growth Company</span><h3>HR Recruitment</h3><div class="meta">📍 Jakarta • 💼 Human Resources</div><a class="btn btn-outline" href="#kontak">Lihat Detail</a></article>
+      <article class="card job-card" data-search="fresh graduate graduate trainee"><span class="job-type">ENTRY LEVEL</span><span class="company">National Group</span><h3>Graduate Trainee</h3><div class="meta">📍 Indonesia • 💼 Management Trainee</div><a class="btn btn-outline" href="#kontak">Lihat Detail</a></article>
+    </div>
+  </div>
+</section>
+
+<section id="produk">
+  <div class="container">
+    <div class="section-head"><div><h2>Produk Jobseeker</h2><p>Produk digital yang membantu Anda mempersiapkan proses melamar kerja.</p></div></div>
+    <div class="grid">
+      <article class="card"><div class="icon">📑</div><h3>Paket CV ATS</h3><p>Template CV ATS siap pakai untuk berbagai kebutuhan lamaran.</p><div class="price">Rp22.800 <small>/produk</small></div><a class="btn btn-primary" href="#kontak">Beli Sekarang</a></article>
+      <article class="card"><div class="icon">🔗</div><h3>100+ Link Karier</h3><p>Kumpulan referensi platform dan link pencarian kerja untuk jobseeker.</p><div class="price">Bundle <small>digital</small></div><a class="btn btn-primary" href="#kontak">Lihat Produk</a></article>
+      <article class="card"><div class="icon">📘</div><h3>Ebook Jobseeker</h3><p>Panduan praktis untuk CV, lamaran, interview, dan strategi mencari kerja.</p><div class="price">Digital <small>ebook</small></div><a class="btn btn-primary" href="#kontak">Lihat Produk</a></article>
+    </div>
+  </div>
+</section>
+
+<section id="tentang" class="about">
+  <div class="container">
+    <div class="section-head"><div><h2>Tentang Mentor | Jobseeker</h2><p>Platform yang berfokus membantu jobseeker meningkatkan kesiapan menghadapi proses rekrutmen melalui materi, produk digital, dan layanan karier.</p></div></div>
+    <div class="grid">
+      <article class="card"><div class="icon">🚀</div><h3>Fokus Praktis</h3><p>Materi dibuat agar mudah diterapkan dalam proses mencari dan melamar pekerjaan.</p></article>
+      <article class="card"><div class="icon">🤝</div><h3>Berorientasi Jobseeker</h3><p>Membantu pencari kerja memahami dokumen, strategi, dan proses seleksi.</p></article>
+      <article class="card"><div class="icon">📈</div><h3>Terus Berkembang</h3><p>Konten dan layanan dapat dikembangkan mengikuti kebutuhan pasar kerja.</p></article>
+    </div>
+    <div class="stats"><div class="stat"><b>7.000+</b><span>produk terjual</span></div><div class="stat"><b>500+</b><span>jobseeker dibantu melalui layanan CV</span></div><div class="stat"><b>100+</b><span>referensi link karier</span></div><div class="stat"><b>2025</b><span>awal perjalanan brand</span></div></div>
+  </div>
+</section>
+
+<section id="blog">
+  <div class="container">
+    <div class="section-head"><div><h2>Blog Karier</h2><p>Artikel edukasi untuk membantu Anda lebih siap menghadapi dunia kerja.</p></div></div>
+    <div class="grid">
+      <article class="card blog-card"><span class="date">CV & ATS</span><h3>Cara Membuat CV ATS-Friendly</h3><p>Pahami struktur, keyword, dan kesalahan umum dalam membuat CV.</p><a href="#kontak">Baca Artikel →</a></article>
+      <article class="card blog-card"><span class="date">INTERVIEW</span><h3>Pertanyaan Interview HR yang Sering Muncul</h3><p>Persiapkan jawaban dengan struktur yang jelas dan relevan.</p><a href="#kontak">Baca Artikel →</a></article>
+      <article class="card blog-card"><span class="date">KARIER</span><h3>Strategi Mencari Kerja Lebih Terarah</h3><p>Bangun rutinitas, target lamaran, dan evaluasi proses pencarian kerja.</p><a href="#kontak">Baca Artikel →</a></article>
+    </div>
+  </div>
+</section>
+
+<section id="kontak" class="contact">
+  <div class="container contact-grid">
+    <div>
+      <div class="section-head"><div><h2>Hubungi Kami</h2><p>Punya pertanyaan tentang CV, produk, atau layanan? Kirim pesan melalui form.</p></div></div>
+      <div class="contact-list">
+        <div class="contact-item"><b>WhatsApp</b><span>Ganti dengan nomor WhatsApp bisnis Anda</span></div>
+        <div class="contact-item"><b>TikTok</b><span>@username Anda</span></div>
+        <div class="contact-item"><b>Lynk.id</b><span>Halaman produk Mentor | Jobseeker</span></div>
+      </div>
+    </div>
+    <form onsubmit="sendMessage(event)">
+      <div class="field"><label>Nama</label><input id="name" required placeholder="Nama Anda"></div>
+      <div class="field"><label>Email</label><input id="email" type="email" required placeholder="nama@email.com"></div>
+      <div class="field"><label>Pesan</label><textarea id="message" required placeholder="Tulis kebutuhan Anda..."></textarea></div>
+      <div class="actions">
+        <button class="btn btn-primary" type="submit">Kirim ke WhatsApp</button>
+        <button class="btn btn-outline" type="button" onclick="sendEmail()">Kirim via Email</button>
+      </div>
+      <p class="contact-note">Pesan WhatsApp akan dibuka di aplikasi WhatsApp. Tombol email akan membuka aplikasi email bawaan perangkat.</p>
+      <p id="formStatus" style="margin-top:12px;font-size:13px;color:var(--green)"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-row"><p><b>Mentor | Jobseeker</b> — Teman persiapan karier Anda.</p><p>© <span id="year"></span> Mentor | Jobseeker</p></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/6281234567890?text=Halo%20Mentor%20%7C%20Jobseeker%2C%20saya%20ingin%20konsultasi%20tentang%20layanan%20karier." target="_blank" rel="noopener" aria-label="Chat WhatsApp">☏</a>
+
+<script>
+function toggleMenu(){document.getElementById('navlinks').classList.toggle('open')}
+function closeMenu(){document.getElementById('navlinks').classList.remove('open')}
+function filterJobs(q){
+  q=q.toLowerCase().trim();
+  document.querySelectorAll('#jobs .job-card').forEach(card=>{
+    card.style.display=(!q||card.dataset.search.includes(q)||card.innerText.toLowerCase().includes(q))?'block':'none';
+  });
+}
+const WHATSAPP_NUMBER="6281234567890";
+const EMAIL_ADDRESS="halo@mentorjobseeker.com";
+
+function getContactMessage(){
+  const name=document.getElementById('name').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const message=document.getElementById('message').value.trim();
+  return `Halo Mentor | Jobseeker,
+
+Nama: ${name}
+Email: ${email}
+
+Pesan:
+${message}
+
+Saya ingin mendapatkan informasi lebih lanjut.`;
+}
+
+function sendMessage(e){
+  e.preventDefault();
+  const text=encodeURIComponent(getContactMessage());
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`,'_blank');
+  document.getElementById('formStatus').textContent="WhatsApp sedang dibuka dengan pesan yang sudah disiapkan.";
+}
+
+function sendEmail(){
+  const name=document.getElementById('name').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const message=document.getElementById('message').value.trim();
+  if(!name || !email || !message){
+    document.getElementById('formStatus').textContent="Silakan lengkapi nama, email, dan pesan terlebih dahulu.";
+    return;
+  }
+  const subject=encodeURIComponent(`Pertanyaan dari ${name} - Mentor | Jobseeker`);
+  const body=encodeURIComponent(getContactMessage());
+  window.location.href=`mailto:${EMAIL_ADDRESS}?subject=${subject}&body=${body}`;
+  document.getElementById('formStatus').textContent="Aplikasi email sedang dibuka dengan pesan yang sudah disiapkan.";
+}
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
